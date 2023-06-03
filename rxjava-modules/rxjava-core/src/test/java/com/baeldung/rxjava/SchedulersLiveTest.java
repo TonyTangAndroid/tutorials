@@ -175,11 +175,11 @@ public class SchedulersLiveTest {
           .subscribe(
             x -> result += Thread.currentThread().getName() + x + "_",
             Throwable::printStackTrace,
-            () -> result += "_Completed"
+            () -> result += "CompletedOn_"+Thread.currentThread().getName()
           );
 
         await()
-          .until(() -> assertTrue(result.equals("Sched-A-0Alfa_Sched-A-0Beta__Completed")));
+          .until(() -> assertTrue(result.equals("Sched-A-0Alfa_Sched-A-0Beta_CompletedOn_Sched-A-0")));
     }
 
     @Test
